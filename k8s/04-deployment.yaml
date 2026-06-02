@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usuarios-api
+  namespace: usuarios
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: usuarios-api
+  template:
+    metadata:
+      labels:
+        app: usuarios-api
+    spec:
+      containers:
+        - name: usuarios-api
+          image: usuarios-api:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: usuarios-config
+                  key: DB_URL
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: usuarios-db-secret
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: usuarios-db-secret
+                  key: DB_PASSWORD
+            - name: DB_POOL_MAX_SIZE
+              valueFrom:
+                configMapKeyRef:
+                  name: usuarios-config
+                  key: DB_POOL_MAX_SIZE
+            - name: DB_POOL_MIN_IDLE
+              valueFrom:
+                configMapKeyRef:
+                  name: usuarios-config
+                  key: DB_POOL_MIN_IDLE
+            - name: INSTANCE_TAG
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: http
+            initialDelaySeconds: 45
+            periodSeconds: 20
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

@@ -1,0 +1,314 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [7 0 R 9 0 R 11 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+6 0 obj
+<< /Length 2424 >>
+stream
+BT
+/F2 17 Tf
+1 0 0 1 54 742 Tm
+(Plan de entrega - Laboratorio Kubernetes + Spring) Tj
+/F2 17 Tf
+1 0 0 1 54 720 Tm
+(Boot) Tj
+/F1 10 Tf
+1 0 0 1 54 690 Tm
+(Estudiante: Wilson Steven Karmelt Heredia Rodriguez) Tj
+/F1 10 Tf
+1 0 0 1 54 676 Tm
+(Codigo: 202021647) Tj
+/F1 10 Tf
+1 0 0 1 54 662 Tm
+(Fecha de entrega parcial: 26 de mayo de 2026) Tj
+/F1 10 Tf
+1 0 0 1 54 648 Tm
+(Siguiente entrega: 2 de junio de 2026) Tj
+/F2 13 Tf
+1 0 0 1 54 618 Tm
+(1. Alcance de la entrega de hoy - Actividades 1 y 2) Tj
+/F1 10 Tf
+1 0 0 1 54 600 Tm
+(Para la entrega del 26/05/2026 se presenta el avance funcional del laboratorio con el) Tj
+/F1 10 Tf
+1 0 0 1 54 586 Tm
+(cluster Kubernetes, la aplicacion Spring Boot desplegada y la base de datos externa) Tj
+/F1 10 Tf
+1 0 0 1 54 572 Tm
+(conectada mediante PgBouncer.) Tj
+/F2 11 Tf
+1 0 0 1 54 555 Tm
+(Actividad 1 - Infraestructura Kubernetes base) Tj
+/F1 10 Tf
+1 0 0 1 64 539 Tm
+(- Cluster Kubernetes recreado y estabilizado con kubeadm.) Tj
+/F1 10 Tf
+1 0 0 1 64 525 Tm
+(- Nodos registrados: master 192.168.40.10, node1 192.168.40.11 y node2) Tj
+/F1 10 Tf
+1 0 0 1 64 511 Tm
+(  192.168.40.12.) Tj
+/F1 10 Tf
+1 0 0 1 64 497 Tm
+(- Base de datos externa: db 192.168.40.13.) Tj
+/F1 10 Tf
+1 0 0 1 64 483 Tm
+(- Calico funcionando con CIDR de Pods 10.244.0.0/16 para evitar conflicto con la red) Tj
+/F1 10 Tf
+1 0 0 1 64 469 Tm
+(  fisica 192.168.40.0/24.) Tj
+/F1 10 Tf
+1 0 0 1 64 455 Tm
+(- Validacion esperada: kubectl get nodes -o wide y kubectl -n kube-system get pods) Tj
+/F1 10 Tf
+1 0 0 1 64 441 Tm
+(  -o wide.) Tj
+/F2 11 Tf
+1 0 0 1 54 424 Tm
+(Actividad 2 - Aplicacion Spring Boot, BD externa y balanceo) Tj
+/F1 10 Tf
+1 0 0 1 64 408 Tm
+(- Aplicacion usuarios-api desplegada en namespace usuarios.) Tj
+/F1 10 Tf
+1 0 0 1 64 394 Tm
+(- Conexion JDBC hacia PostgreSQL externo por PgBouncer:) Tj
+/F1 10 Tf
+1 0 0 1 64 380 Tm
+(  jdbc:postgresql://192.168.40.13:6432/usuariosdb.) Tj
+/F1 10 Tf
+1 0 0 1 64 366 Tm
+(- Servicio usuarios-api publicado internamente y expuesto hacia el exterior mediante) Tj
+/F1 10 Tf
+1 0 0 1 64 352 Tm
+(  Nginx Ingress Controller.) Tj
+/F1 10 Tf
+1 0 0 1 64 338 Tm
+(- Nginx Ingress Controller expuesto por NodePort HTTP 30784.) Tj
+/F1 10 Tf
+1 0 0 1 64 324 Tm
+(- Endpoint probado: http://192.168.40.10:30784/api/usuarios.) Tj
+/F1 10 Tf
+1 0 0 1 64 310 Tm
+(- Se verifico balanceo entre Pods usando los campos ipAddress e instanceTag) Tj
+/F1 10 Tf
+1 0 0 1 64 296 Tm
+(  devueltos por la API.) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 2038 >>
+stream
+BT
+/F2 13 Tf
+1 0 0 1 54 736 Tm
+(2. Estado tecnico comprobado) Tj
+/F1 10 Tf
+1 0 0 1 64 718 Tm
+(- Los nodos master, node1 y node2 aparecen en estado Ready.) Tj
+/F1 10 Tf
+1 0 0 1 64 704 Tm
+(- PgBouncer escucha correctamente en 192.168.40.13:6432.) Tj
+/F1 10 Tf
+1 0 0 1 64 690 Tm
+(- La conectividad a PgBouncer fue probada desde master, node1 y node2 con nc -vz) Tj
+/F1 10 Tf
+1 0 0 1 64 676 Tm
+(  192.168.40.13 6432.) Tj
+/F1 10 Tf
+1 0 0 1 64 662 Tm
+(- Se corrigio el problema de red que generaba conflicto entre IPs de Pods y la red) Tj
+/F1 10 Tf
+1 0 0 1 64 648 Tm
+(  LAN.) Tj
+/F1 10 Tf
+1 0 0 1 64 634 Tm
+(- Se corrigio el problema del JDBC URL eliminando currentSchema para evitar rechazo) Tj
+/F1 10 Tf
+1 0 0 1 64 620 Tm
+(  de PgBouncer.) Tj
+/F1 10 Tf
+1 0 0 1 64 606 Tm
+(- Se aplico anti-affinity para distribuir replicas en distintos nodos trabajadores.) Tj
+/F1 10 Tf
+1 0 0 1 64 592 Tm
+(- Replica saludable en node1: Pod con IP 10.244.166.142.) Tj
+/F1 10 Tf
+1 0 0 1 64 578 Tm
+(- Replica saludable en node2: Pod con IP 10.244.104.17.) Tj
+/F1 10 Tf
+1 0 0 1 64 564 Tm
+(- Prueba de balanceo: multiples curls al Ingress retornaron respuestas alternadas) Tj
+/F1 10 Tf
+1 0 0 1 64 550 Tm
+(  entre ambos Pods.) Tj
+/F2 13 Tf
+1 0 0 1 54 530 Tm
+(3. Evidencias que se deben anexar) Tj
+/F1 10 Tf
+1 0 0 1 64 512 Tm
+(- Captura de kubectl get nodes -o wide.) Tj
+/F1 10 Tf
+1 0 0 1 64 498 Tm
+(- Captura de kubectl -n kube-system get pods -o wide.) Tj
+/F1 10 Tf
+1 0 0 1 64 484 Tm
+(- Captura de kubectl -n usuarios get pods -o wide mostrando Pods en node1 y node2.) Tj
+/F1 10 Tf
+1 0 0 1 64 470 Tm
+(- Captura de kubectl -n ingress-nginx get svc mostrando NodePort 30784.) Tj
+/F1 10 Tf
+1 0 0 1 64 456 Tm
+(- Captura del navegador o curl consumiendo http://192.168.40.10:30784/api/usuarios.) Tj
+/F1 10 Tf
+1 0 0 1 64 442 Tm
+(- Captura de la prueba de balanceo con 10 peticiones y cambio de) Tj
+/F1 10 Tf
+1 0 0 1 64 428 Tm
+(  instanceTag/ipAddress.) Tj
+/F1 10 Tf
+1 0 0 1 64 414 Tm
+(- Captura o archivo con insercion de datos de prueba, idealmente 50 registros.) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 2508 >>
+stream
+BT
+/F2 13 Tf
+1 0 0 1 54 736 Tm
+(4. Plan para la siguiente entrega - Actividades 3, 4 y 5) Tj
+/F2 11 Tf
+1 0 0 1 54 715 Tm
+(Actividad 3) Tj
+/F1 10 Tf
+1 0 0 1 64 699 Tm
+(- Dejar scripts reproducibles para preparar IPs, hosts, SSH y kubelet node-ip en) Tj
+/F1 10 Tf
+1 0 0 1 64 685 Tm
+(  cada VM.) Tj
+/F1 10 Tf
+1 0 0 1 64 671 Tm
+(- Preparar variante para red universitaria 192.168.137.xxx.) Tj
+/F1 10 Tf
+1 0 0 1 64 657 Tm
+(- Validar que el entorno pueda levantarse nuevamente desde VirtualBox y conectarse) Tj
+/F1 10 Tf
+1 0 0 1 64 643 Tm
+(  por MobaXterm.) Tj
+/F2 11 Tf
+1 0 0 1 54 626 Tm
+(Actividad 4) Tj
+/F1 10 Tf
+1 0 0 1 64 610 Tm
+(- Ejecutar pruebas de balanceo y disponibilidad con varias replicas.) Tj
+/F1 10 Tf
+1 0 0 1 64 596 Tm
+(- Probar insercion y consulta de datos desde la API.) Tj
+/F1 10 Tf
+1 0 0 1 64 582 Tm
+(- Registrar historico de Pods, IPs, nodos y respuestas para demostrar distribucion.) Tj
+/F1 10 Tf
+1 0 0 1 64 568 Tm
+(- Documentar comandos para moverse entre despliegues, escalar, reiniciar y verificar) Tj
+/F1 10 Tf
+1 0 0 1 64 554 Tm
+(  Pods.) Tj
+/F2 11 Tf
+1 0 0 1 54 537 Tm
+(Actividad 5) Tj
+/F1 10 Tf
+1 0 0 1 64 521 Tm
+(- Completar informe final con arquitectura, comandos, evidencias, errores) Tj
+/F1 10 Tf
+1 0 0 1 64 507 Tm
+(  encontrados y soluciones.) Tj
+/F1 10 Tf
+1 0 0 1 64 493 Tm
+(- Incluir el apartado solicitado en el punto 5.1 del documento guia, ajustando el) Tj
+/F1 10 Tf
+1 0 0 1 64 479 Tm
+(  texto exacto cuando se tenga visible.) Tj
+/F1 10 Tf
+1 0 0 1 64 465 Tm
+(- Entregar anexos: manifiestos YAML, scripts, capturas y resultados de pruebas.) Tj
+/F2 13 Tf
+1 0 0 1 54 445 Tm
+(5. Cronograma de entrega) Tj
+/F1 10 Tf
+1 0 0 1 54 427 Tm
+(26/05/2026: Entrega de Actividades 1 y 2 con cluster funcional, aplicacion desplegada,) Tj
+/F1 10 Tf
+1 0 0 1 54 413 Tm
+(base de datos externa y prueba inicial de balanceo.) Tj
+/F1 10 Tf
+1 0 0 1 54 399 Tm
+(02/06/2026: Entrega de Actividades 3, 4 y 5 con automatizacion, pruebas completas,) Tj
+/F1 10 Tf
+1 0 0 1 54 385 Tm
+(historico, documentacion final y anexos.) Tj
+/F2 13 Tf
+1 0 0 1 54 365 Tm
+(6. Comandos clave para evidencia) Tj
+/F3 9 Tf
+1 0 0 1 70 347 Tm
+(kubectl get nodes -o wide) Tj
+/F3 9 Tf
+1 0 0 1 70 334 Tm
+(kubectl -n kube-system get pods -o wide) Tj
+/F3 9 Tf
+1 0 0 1 70 321 Tm
+(kubectl -n usuarios get pods -o wide) Tj
+/F3 9 Tf
+1 0 0 1 70 308 Tm
+(kubectl -n ingress-nginx get svc) Tj
+/F3 9 Tf
+1 0 0 1 70 295 Tm
+(for i in {1..10}; do curl -s http://192.168.40.10:30784/api/usuarios; echo;) Tj
+/F3 9 Tf
+1 0 0 1 70 282 Tm
+(done) Tj
+ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 10 0 R >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000128 00000 n 
+0000000198 00000 n 
+0000000273 00000 n 
+0000000341 00000 n 
+0000002817 00000 n 
+0000002963 00000 n 
+0000005053 00000 n 
+0000005199 00000 n 
+0000007760 00000 n 
+trailer
+<< /Size 12 /Root 1 0 R >>
+startxref
+7908
+%%EOF
